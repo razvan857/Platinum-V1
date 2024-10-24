@@ -2,7 +2,7 @@ const { smd, gemini } = require('../lib')
 
 smd(
   {
-    pattern: 'gemini2 ?(.*)',
+    pattern: 'gemini2 ',
     desc: 'google gemini',
     type: 'ai',
   },
