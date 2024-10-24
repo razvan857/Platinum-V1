@@ -11,7 +11,7 @@ const {
 } = require("../lib");
 const { search, download } = require("aptoide-scraper");
 const googleTTS = require("google-tts-api");
-const ytdl = require("alya");
+const ytdl = require("platinum-v1");
 const yts = require("secktor-pack");
 const fs = require("fs-extra");
 const axios = require("axios");
@@ -58,7 +58,7 @@ const path = require ("path");
 *Followers:* ${followers}
 *Description:* ${description || "No description provided"}
 
-\t*Queen_Alya WA STALKER*
+\t*Platinum-V1 WA STALKER*
 `;
 
       await m.bot.sendFromUrl(m.from, img, caption, m, {}, "image");
@@ -112,7 +112,7 @@ smd(
 *Followers:* ${followers}
 *Following:* ${following}
 
-\t*Queen_Alya IG STALKER*
+\t*Platinum-V1 IG STALKER*
 `;
 
       await m.send(caption);
@@ -171,7 +171,7 @@ smd(
 *Account Created:* ${created_at}
 *Last Updated:* ${updated_at}
 
-\t*Queen_Alya GitHub STALKER*
+\t*Platinum-V1 GitHub STALKER*
 `;
 
       await m.bot.sendFromUrl(m.from, profile_pic, caption, m, {}, "image");
@@ -233,7 +233,7 @@ smd(
          let _0x13ee38 = await getBuffer(_0x3c2608);
          await _0x19df48.reply(_0x13ee38, {
            packname: Config.packname,
-           author: "Queen_Alya-Md"
+           author: "Platinum-V1-Md"
          }, "sticker");
        } else {
          await _0x19df48.bot.sendMessage(_0x19df48.chat, {
@@ -557,7 +557,7 @@ smd(
 
       if (!repoUrl) {
         return await _0x1ae8f8.reply(
-          "*Provide Repo URL, e.g., .git https://github.com/STAR-KING0/Queen_Alya_*"
+          "*Provide Repo URL, e.g., .git https://github.com//Platinum-V1_*"
         );
       }
 
@@ -608,12 +608,12 @@ smd(
    desc: "text to speech.",
    category: "downloader",
    filename: __filename,
-   use: "<Hii,this is alya>"
+   use: "<Hii,this is platinum-v1>"
  }, async (_0x55aba2, _0x56da6b) => {
    try {
      let _0x204f81 = _0x55aba2.reply_text ? _0x55aba2.reply_text : _0x56da6b;
      if (!_0x204f81) {
-       return _0x55aba2.reply("*_Example : .tts Hi,I am Queen_Alya-Md whatsapp bot._*");
+       return _0x55aba2.reply("*_Example : .tts Hi,I am Platinum-V1-Md whatsapp bot._*");
      }
      try {
        let _0x1974d5 = _0x56da6b ? _0x56da6b.split(" ")[0].toLowerCase() : "en";
@@ -628,7 +628,7 @@ smd(
          },
          mimetype: "audio/mpeg",
          ptt: true,
-         fileName: "Queen_Alya-Md-tts.m4a"
+         fileName: "Platinum-V1-Md-tts.m4a"
        }, {
          quoted: _0x55aba2
        });
@@ -644,7 +644,7 @@ smd(
          },
          mimetype: "audio/mpeg",
          ptt: true,
-         fileName: "Queen_Alya-Md-tts.m4a"
+         fileName: "Platinum-V1-Md-tts.m4a"
        }, {
          quoted: _0x55aba2
        });
@@ -655,7 +655,7 @@ smd(
  });
  smd({
    pattern: "sound",
-    alias: ["Queen_Alyai", "aine","mentalism","alive","waso"],
+    alias: ["Platinum-V1i", "aine","mentalism","alive","waso"],
    desc: "Downloads ringtone.",
    category: "downloader",
    filename: __filename,
@@ -676,7 +676,7 @@ smd(
      };
      let _0x4737bb = {
        audio: _0x2ba501,
-       fileName: "alya-Md tiktok Sound" + _0x19c223 + ".m4a",
+       fileName: "platinum-v1-Md tiktok Sound" + _0x19c223 + ".m4a",
        mimetype: "audio/mpeg",
        ptt: true,
        contextInfo: _0x29fdd9
@@ -774,7 +774,7 @@ smd({
      try {
        let _0x32b31a = await ytdl.getInfo(_0x1d542b[0]);
        _0x43c5ac = _0x32b31a.videoDetails.title;
-       let _0x4b47c3 = "./temp/alya-Md " + _0x1d542b[1] + ".mp3";
+       let _0x4b47c3 = "./temp/platinum-v1-Md " + _0x1d542b[1] + ".mp3";
        const _0x212389 = ytdl(_0x1d542b[0], {
          filter: _0xd2371a => _0xd2371a.audioBitrate == 160 || _0xd2371a.audioBitrate == 128
        }).pipe(fs.createWriteStream(_0x4b47c3));
@@ -805,7 +805,7 @@ smd({
          url: _0x59bbaa
        },
        mimetype: "audio/mpeg",
-       fileName: "alya-Md--" + _0x1d542b[1] + ".mp3",
+       fileName: "platinum-v1-Md--" + _0x1d542b[1] + ".mp3",
        caption: Config.caption,
        contextInfo: _0x10e2fa
      };
