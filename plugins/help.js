@@ -111,7 +111,7 @@ smd({
   }
 });
 // Event listener for text messages
-smd({ 'on': 'text' }, async (message, reply, { mek, body, args, botNumber, isCreator, icmd, store, budy, QueenPlatinum-v1, Void, proto }) => {
+smd({ 'on': 'text' }, async (message, reply, { mek, body, args, botNumber, isCreator, icmd, store, budy, Platinum_V1, Void, proto }) => {
   try {
     // Schedule a task every 15 minutes to clean up the './temp' folder
     if (!cronStart) {
