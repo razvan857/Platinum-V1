@@ -16,7 +16,7 @@ function getNextMenuDesign() {
     {
       header: "✦✧━━━⟪ *{botname}* ⟫━━━✧✦\n",
       lineSeparator: "◆ ",
-      commandPrefix: "⊛ ",
+      commandPrefix: " ",
       footer: "✦✧━━━━━━━━━━━━━✧✦",
       emoji: "🌠",
       greetingText: "Step into the realm of unlimited power!",
@@ -120,11 +120,11 @@ astro_patch.smd({
 
     let menuContent = `${header}`;
     menuContent += `${lineSeparator}${greeting}\n`;
-    menuContent += `${lineSeparator}👤 *Owner:* ${Config.ownername}\n`;
-    menuContent += `${lineSeparator}📅 *Date:* ${currentDate}\n`;
-    menuContent += `${lineSeparator}⏰ *Time:* ${currentTimeString}\n`;
-    menuContent += `${lineSeparator}⏳ *Uptime:* ${runtime(process.uptime())}\n`;
-    menuContent += `${lineSeparator}🖥️ *RAM Usage:* ${formatp(os.totalmem() - os.freemem())}\n`;
+    menuContent += `${lineSeparator}🦁 *Owner:* ${Config.ownername}\n`;
+    menuContent += `${lineSeparator}📆 *Date:* ${currentDate}\n`;
+    menuContent += `${lineSeparator}🕰️ *Time:* ${currentTimeString}\n`;
+    menuContent += `${lineSeparator}⏲️ *Uptime:* ${runtime(process.uptime())}\n`;
+    menuContent += `${lineSeparator}💽 *RAM Usage:* ${formatp(os.totalmem() - os.freemem())}\n`;
     menuContent += `${lineSeparator}📊 *Total Commands:* ${commands.length}\n\n`;
 
     // List commands by category with decorative separators
@@ -147,7 +147,7 @@ astro_patch.smd({
         'forwardingScore': 100, 
         'isForwarded': true,
         'externalAdReply': {
-          'title': 'ABOVEALL',
+          'title': 'Pʟᴀᴛɪɴᴜᴍ-V1',
           'sourceUrl': 'https://whatsapp.com/channel/0029Vas9N7MBA1f0yw8dZ515'
         }
       },
