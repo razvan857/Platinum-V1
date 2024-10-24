@@ -27,7 +27,7 @@ smd(
       }
 
       // Send a loading message
-      await m.send("Alya is thinking 🤔");
+      await m.send("Chill your request is being processed •°•° 🤔");
 
       // Define the API URL
       const apiUrl = `https://widipe.com/gpt4?text=${encodeURIComponent(query)}`;
@@ -70,7 +70,7 @@ smd(
       }
 
       // Send a loading message
-      await m.send("Alya is thinking 🤔");
+      await m.send("Chill your request is being processed •°•° 🤔");
 
       // Define the API URL
       const apiUrl = `https://itzpire.com/ai/bing-ai?model=Precise&q=${encodeURIComponent(query)}`;
@@ -149,7 +149,7 @@ smd({
       await m.bot.sendFromUrl(
         m.from,
         photoUrl,
-        "*Queen_Alya generated this photo*:",
+        "*Made by Pʟᴀᴛɪɴᴜᴍ-V1*:",
         m,
         {},
         "image"
@@ -222,7 +222,7 @@ smd(
         await m.bot.sendFromUrl(
           m.from,
           photoUrl,
-          "*Queen_Alya generated this photo*:",
+          "*Made by Pʟᴀᴛɪɴᴜᴍ-V1*:",
           m,
           {},
           "image"
@@ -243,7 +243,7 @@ smd(
         await m.bot.sendFromUrl(
           m.from,
           photoUrl,
-          "*Queen_Alya generated this photo*:",
+          "*Made by Pʟᴀᴛɪɴᴜᴍ-V1*:",
           m,
           {},
           "image"
@@ -276,7 +276,7 @@ smd(
       }
 
       // Send a loading message
-      await m.send("Alya is thinking 🤔");
+      await m.send("Chill your request is being processed •°•° 🤔");
 
       // Define the API URL
       const apiUrl = `https://widipe.com/v3/gpt4?text=${encodeURIComponent(query)}`;
@@ -320,7 +320,7 @@ smd(
       }
 
       // Send a loading message
-      await m.send("Alya is thinking 🤔");
+      await m.send("Chill your request is being processed •°•° 🤔");
 
       // Define the new API URL
       const apiUrl = `https://widipe.com/gemini?text=${encodeURIComponent(query)}`;
@@ -364,7 +364,7 @@ smd(
       }
 
       // Send a loading message
-      await m.send("Alya is thinking 🤔");
+      await m.send("Chill your request is being processed •°•° 🤔");
 
       // Define the new API URL
       const apiUrl = `https://widipe.com/turbo?text=${encodeURIComponent(query)}`;
@@ -407,7 +407,7 @@ smd(
       }
 
       // Send a loading message
-      await m.send("Alya is thinking 🤔");
+      await m.send("Chill your request is being processed •°•° 🤔");
 
       // Define the new API URL
       const apiUrl = `https://widipe.com/simi?text=${encodeURIComponent(query)}`;
@@ -472,7 +472,7 @@ smd(
         await m.bot.sendFromUrl(
           m.from,
           photoUrl,
-          "*Queen_Alya generated this photo*:",
+          "*Made by Pʟᴀᴛɪɴᴜᴍ-V1*:",
           m,
           {},
           "image"
@@ -493,7 +493,7 @@ smd(
         await m.bot.sendFromUrl(
           m.from,
           photoUrl,
-          "*Queen_Alya generated this photo*:",
+          "*Made by Pʟᴀᴛɪɴᴜᴍ-V1*:",
           m,
           {},
           "image"
@@ -928,7 +928,7 @@ smd(
       }
 
       // Send a loading message
-      await m.send("Alya is thinking 🤔");
+      await m.send("Chill your request is being processed •°•° 🤔");
 
       // Define the API URL
       const apiUrl = `https://giftedapis.us.kg/api/ai/blackbox?q=${encodeURIComponent(query)}&apikey=_0x5aff35,_0x187643`;
