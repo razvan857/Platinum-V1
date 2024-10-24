@@ -24,10 +24,10 @@ const {
   createSticker,
   StickerTypes
 } = require("wa-sticker-formatter");
-const Platinum-V1 = require("../lib/plugins");
+const Platinum_v1 = require("../lib/plugins");
 const {
   cmd
-} = Platinum-V1;
+} = Platinum_v1;
 smd({
   'cmdname': "join",
   'info': "joins group by link",
