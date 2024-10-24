@@ -1,5 +1,15 @@
-const { smd, gemini } = require('../lib')
-
+const {
+  aitts,
+  smd,
+  prefix,
+  Config,
+  createUrl,
+  parsedJid,
+  sleep,
+} = require("../lib");
+const axios = require("axios");
+const { send } = require("../lib");
+const fetch = require("node-fetch");
 smd(
   {
     pattern: 'gemini2 ',
