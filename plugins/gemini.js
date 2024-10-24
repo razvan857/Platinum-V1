@@ -1,6 +1,6 @@
-const { bot, gemini } = require('../lib')
+const { smd, gemini } = require('../lib')
 
-bot(
+smd(
   {
     pattern: 'gemini2 ?(.*)',
     desc: 'google gemini',
