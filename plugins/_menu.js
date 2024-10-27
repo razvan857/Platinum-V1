@@ -3,14 +3,13 @@ const path = require('path');
 const os = require('os');
 const Config = require('../config');
 const { fancytext, tiny, runtime, formatp, prefix } = require("../lib");
+const { sendButtonMessage } = require('../lib/messageHelpers'); // Import from lib
 const long = String.fromCharCode(0x200e);
 const readmore = long.repeat(0xfa1);
 const astro_patch = require("../lib/plugins");
 
-// Variable to keep track of the current design index
 let currentDesignIndex = 0;
 
-// Function to get the next menu design
 function getNextMenuDesign() {
   const designs = [
     {
@@ -22,41 +21,18 @@ function getNextMenuDesign() {
       greetingText: "Step into the realm of unlimited power!",
       categorySeparator: "✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦\n",
     },
-    {
-      header: "❖❖━━━━━⟪ *{botname}* ⟫━━━━━❖❖\n",
-      lineSeparator: "✦ ",
-      commandPrefix: "❖ ",
-      footer: "❖❖━━━━━━━━━━━━❖❖",
-      emoji: "✨",
-      greetingText: "Welcome to your cosmic command hub!",
-      categorySeparator: "❖❖❖❖❖❖❖❖❖❖❖❖❖❖\n",
-    },
-    {
-      header: "⚔️ ━━━⟪ *{botname}* ⟫━━━ ⚔️\n",
-      lineSeparator: "• ",
-      commandPrefix: "⚔️ ",
-      footer: "⚔️━━━━━━━━━━━━━⚔️",
-      emoji: "⚡",
-      greetingText: "Harness the strength of legends!",
-      categorySeparator: "⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️\n",
-    }
+    // Add other designs here
   ];
 
-  // Get the current design
   const design = designs[currentDesignIndex];
-  
-  // Update the index for the next design
   currentDesignIndex = (currentDesignIndex + 1) % designs.length;
-
   return design;
 }
 
-// Sleep function for delays
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// Command handler with subtle anime theme
 astro_patch.smd({
   'cmdname': "menu",
   'desc': "Displays a calm, readable command list",
@@ -65,15 +41,12 @@ astro_patch.smd({
   'filename': __filename
 }, async (context, message) => {
   try {
-    // Display loading messages
-    const loadingMessages = [
-      "The one above all is king y'all bow your heads 🙇"];
+    const loadingMessages = ["The one above all is king y'all bow your heads 🙇"];
     for (const msg of loadingMessages) {
       await context.sendMessage(context.chat, { text: msg });
-      await sleep(1000); // Wait for 1 second between messages
+      await sleep(1000);
     }
 
-    // Display the menu after loading
     const { commands } = require("../lib");
     const currentTime = new Date();
     const hours = currentTime.getHours();
@@ -82,38 +55,21 @@ astro_patch.smd({
     const currentTimeString = `${hours}:${minutes}`;
     let greeting = "";
 
-    // Anime-style greetings based on time of day
     if (hours >= 5 && hours < 9) {
       greeting = "🌸 *Good Morning* 🌸 - Time for a fresh start!";
     } else if (hours >= 9 && hours < 12) {
       greeting = "🌞 *It's still morning* 🌞 - You should get to work!";
     } else if (hours >= 12 && hours < 15) {
-      greeting = "🌞 *Good Afternoon* 🌞 - Keep up the great work that is if you have any 😂!";
+      greeting = "🌞 *Good Afternoon* 🌞 - Keep up the great work!";
     } else if (hours >= 15 && hours < 18) {
       greeting = "🌆 *Good Evening* 🌆 - Unwind and relax!";
     } else if (hours >= 18 && hours < 21) {
       greeting = "🌝 *Still night* 🌝 - Reflect on your day!";
-    } else if (hours >= 21 && hours < 23) {
-      greeting = "⭐ *Still night obviously* ⭐ - Get ready to drop your phone!";
     } else {
       greeting = "🌙 *Good Night* 🌙 - Try dey sleep you no be winch!";
     }
 
-    // Choose the next menu design
     const design = getNextMenuDesign();
-
-    // Organize commands by category
-    const commandCategories = {};
-    commands.forEach(cmd => {
-      if (!cmd.dontAddCommandList && cmd.pattern) {
-        if (!commandCategories[cmd.category]) {
-          commandCategories[cmd.category] = [];
-        }
-        commandCategories[cmd.category].push(cmd.pattern);
-      }
-    });
-
-    // Build the menu content based on the chosen design
     const header = design.header.replace("{botname}", Config.botname);
     const lineSeparator = design.lineSeparator;
     const footer = design.footer;
@@ -127,7 +83,6 @@ astro_patch.smd({
     menuContent += `${lineSeparator}💽 *RAM Usage:* ${formatp(os.totalmem() - os.freemem())}\n`;
     menuContent += `${lineSeparator}📊 *Total Commands:* ${commands.length}\n\n`;
 
-    // Create buttons for each category
     let buttons = [];
     for (const category in commandCategories) {
       buttons.push({
@@ -137,13 +92,12 @@ astro_patch.smd({
       });
     }
 
-    // Final menu options with buttons
     const menuOptions = {
       caption: menuContent,
       buttons: buttons,
-      headerType: 1, // Button header type
+      footer: footer,
       contextInfo: {
-        forwardingScore: 100, 
+        forwardingScore: 100,
         isForwarded: true,
         externalAdReply: {
           title: 'Pʟᴀᴛɪɴᴜᴍ-V1',
@@ -153,8 +107,8 @@ astro_patch.smd({
       ephemeralExpiration: 3000
     };
 
-    // Send the menu with buttons
-    await context.sendButtonMessage(context.chat, menuOptions, context);
+    // Use the helper function to send the menu with buttons
+    await sendButtonMessage(context, context.chat, menuContent, buttons, footer);
 
   } catch (error) {
     await context.error(`Error: ${error.message}`, error);
