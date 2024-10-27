@@ -127,35 +127,34 @@ astro_patch.smd({
     menuContent += `${lineSeparator}💽 *RAM Usage:* ${formatp(os.totalmem() - os.freemem())}\n`;
     menuContent += `${lineSeparator}📊 *Total Commands:* ${commands.length}\n\n`;
 
-    // List commands by category with decorative separators
+    // Create buttons for each category
+    let buttons = [];
     for (const category in commandCategories) {
-      menuContent += `${design.categorySeparator}`;
-      menuContent += `${design.emoji} *${tiny(category)}* ${design.emoji}\n`;
-      commandCategories[category].forEach(cmd => {
-        menuContent += `${lineSeparator}${design.commandPrefix}${fancytext(cmd, 1)}\n`;
+      buttons.push({
+        buttonId: `menu_${category}`,
+        buttonText: { displayText: `${design.emoji} ${tiny(category)}` },
+        type: 1
       });
     }
 
-    menuContent += `\n${footer}\n\n${design.emoji} *${Config.botname}* - Your assistant\n`;
-    menuContent += `©2024 *JUPITERBOLD05*\n`;
-    menuContent += `${readmore}`;
-
-    // Send the menu with a "forwarded" tag
+    // Final menu options with buttons
     const menuOptions = {
-      'caption': menuContent,
-      'contextInfo': {
-        'forwardingScore': 100, 
-        'isForwarded': true,
-        'externalAdReply': {
-          'title': 'Pʟᴀᴛɪɴᴜᴍ-V1',
-          'sourceUrl': 'https://whatsapp.com/channel/0029Vas9N7MBA1f0yw8dZ515'
+      caption: menuContent,
+      buttons: buttons,
+      headerType: 1, // Button header type
+      contextInfo: {
+        forwardingScore: 100, 
+        isForwarded: true,
+        externalAdReply: {
+          title: 'Pʟᴀᴛɪɴᴜᴍ-V1',
+          sourceUrl: 'https://whatsapp.com/channel/0029Vas9N7MBA1f0yw8dZ515'
         }
       },
-      'ephemeralExpiration': 3000
+      ephemeralExpiration: 3000
     };
 
-    // Send the menu
-    await context.sendUi(context.chat, menuOptions, context);
+    // Send the menu with buttons
+    await context.sendButtonMessage(context.chat, menuOptions, context);
 
   } catch (error) {
     await context.error(`Error: ${error.message}`, error);
