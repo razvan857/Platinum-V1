@@ -18,14 +18,14 @@ function getNextMenuDesign() {
       lineSeparator: "◆ ",
       commandPrefix: " ",
       footer: "✦✧━━━━━━━━━━━━━✧✦",
-      emoji: "🌠",
+      emoji: "🔥",
       greetingText: "Step into the realm of unlimited power!",
       categorySeparator: "✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦\n",
     },
     {
       header: "❖❖━━━━━⟪ *{botname}* ⟫━━━━━❖❖\n",
       lineSeparator: "✦ ",
-      commandPrefix: "❖ ",
+      commandPrefix: " ",
       footer: "❖❖━━━━━━━━━━━━❖❖",
       emoji: "✨",
       greetingText: "Welcome to your cosmic command hub!",
@@ -34,11 +34,11 @@ function getNextMenuDesign() {
     {
       header: "⚔️ ━━━⟪ *{botname}* ⟫━━━ ⚔️\n",
       lineSeparator: "• ",
-      commandPrefix: "⚔️ ",
+      commandPrefix: " ",
       footer: "⚔️━━━━━━━━━━━━━⚔️",
       emoji: "⚡",
       greetingText: "Harness the strength of legends!",
-      categorySeparator: "⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️⚔️\n",
+      categorySeparator: "•°•°•°•°•°•°•°•°•°•°•°\n",
     }
   ];
 
@@ -88,7 +88,7 @@ astro_patch.smd({
     } else if (hours >= 9 && hours < 12) {
       greeting = "🌞 *It's still morning* 🌞 - You should get to work!";
     } else if (hours >= 12 && hours < 15) {
-      greeting = "🌞 *Good Afternoon* 🌞 - Keep up the great work that is if you have any 😂!";
+      greeting = "🌞 *Good Afternoon* 🌞 - Keep up the great work that's if you have any 😂!";
     } else if (hours >= 15 && hours < 18) {
       greeting = "🌆 *Good Evening* 🌆 - Unwind and relax!";
     } else if (hours >= 18 && hours < 21) {
