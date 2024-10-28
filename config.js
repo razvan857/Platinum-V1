@@ -6,7 +6,7 @@ global.audio = "www.youtube.com";
 global.video = "www.youtube.com";
 global.port = process.env.PORT;
 global.appUrl = process.env.APP_URL || "";
-global.email = "kingdavid23565@gmail.com";
+global.email = "jadewale71@gmail.com";
 global.location = "Lagos, Nigeria";
 global.mongodb = process.env.MONGODB_URI || "mongodb+srv://astrofx0011:astro@cluster0.lmwnxdt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 global.allowJids = process.env.ALLOW_JID || "null";
@@ -52,7 +52,7 @@ module.exports = {
   author: process.env.PACK_AUTHER || "ąҍօѵҽ ąӀӀ ☠️👑🌍",
   packname: process.env.PACK_NAME || "ąҍօѵҽ ąӀӀ ☠️👑🌍",
   botname: process.env.BOT_NAME || "Ͳհҽ օղҽ ąҍօѵҽ ąӀӀ ☠️👑🌍",
-  ownername: process.env.OWNER_NAME || "Jᴜᴘɪᴛᴇʀʙᴏʟᴅ99 ☠️👑🌍",
+  ownername: process.env.OWNER_NAME || "ᴀʙᴏᴠᴇ ᴀʟʟ ☠️👑🌍",
   errorChat: process.env.ERROR_CHAT || "",
   KOYEB_API: process.env.KOYEB_API || "false",
   REMOVE_BG_KEY: process.env.REMOVE_BG_KEY || "",
