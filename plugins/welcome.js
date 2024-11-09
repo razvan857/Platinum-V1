@@ -1,4 +1,4 @@
-const config = require('../../config.js');
+const config = require('../config.js');
 
 const gcEvent = async (m, Matrix) => {
   const prefix = config.PREFIX;
