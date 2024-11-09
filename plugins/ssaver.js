@@ -165,19 +165,42 @@ smd(
   filename: __filename,
 },
 async (m) => {
-  const videoUrl = "https://f.uguu.se/fblVYEjM.mp4";
+  const videoUrl = "https://imgur.com/a/xrA7HLY";
   const caption = "🎀🌈✿lili✿🎀🌈!";
 
   try {
     await m.sendMessage(m.from, {
       video: { url: videoUrl },
-      caption: caption,
+      caption:
       mimetype: 'video/mp4'
     });
    } catch (e) {
     console.error(`${e}\n\nCommand: sendvideo`, e);
    }
  }
+);
+smd(
+  {
+    cmdname: "lili2",
+    desc: "Send a video to Luna",
+    type: "fun",
+    react: "🎥",
+    filename: __filename,
+  },
+  async (m) => {
+    const videoUrl = "https://imgur.com/a/Ocms7h5"; // Updated URL
+    const caption = "🎀🌈✿lili✿🎀🌈! Do you like it?"; // Updated caption
+
+    try {
+      await m.sendMessage(m.from, {
+        video: { url: videoUrl },
+        caption: caption,
+        mimetype: 'video/mp4'
+      });
+    } catch (e) {
+      console.error(`${e}\n\nCommand: sendvideo`, e);
+    }
+  }
 );
 smd(
   {
@@ -197,6 +220,28 @@ smd(
       );
     } catch (e) {
       m.error(`${e}\n\nCommand: whyareyougay`, e, false);
+    }
+  }
+);smd(
+  {
+    cmdname: "lili",
+    desc: "Send a video to Luna",
+    type: "fun",
+    react: "🎥",
+    filename: __filename,
+  },
+  async (m) => {
+    const videoUrl = "https://imgur.com/a/Ocms7h5"; // Updated URL
+    const caption = "🎀🌈✿lili✿🎀🌈! Do you like it?"; // Updated caption
+
+    try {
+      await m.sendMessage(m.from, {
+        video: { url: videoUrl },
+        caption: caption,
+        mimetype: 'video/mp4'
+      });
+    } catch (e) {
+      console.error(`${e}\n\nCommand: sendvideo`, e);
     }
   }
 );
