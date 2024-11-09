@@ -127,6 +127,38 @@ smd({
   }
 });
 smd({
+  pattern: "getpp2",
+  desc: "Get Profile Pic For Given User",
+  category: "user",
+  filename: __filename
+}, async (m) => {
+  try {
+    let targetUser = m.reply_message ? m.reply_message.sender : m.mentionedJid[0] ? m.mentionedJid[0] : m.from;
+    console.log("Target User:", targetUser);
+
+    let profilePicUrl;
+    try {
+      profilePicUrl = await m.bot.profilePictureUrl(targetUser, "image");
+      console.log("Profile Pic URL:", profilePicUrl);
+    } catch (error) {
+      console.log("Error fetching profile picture:", error);
+      return m.reply("```Profile Pic Not Fetched```");
+    }
+
+    return await m.bot.sendMessage(m.chat, {
+      image: {
+        url: profilePicUrl
+      },
+      caption: "  *---Profile Pic Is Here---*\n" + (Config.caption || "Default caption")
+    }, {
+      quoted: m
+    });
+  } catch (error) {
+    console.log("Error in getpp command:", error);
+    await m.error(error + "\n\ncommand : getpp", error);
+  }
+});
+smd({
   'pattern': 'mee',
   'desc': "Makes wa me for user.",
   'category': "user",
