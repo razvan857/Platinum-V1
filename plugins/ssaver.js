@@ -156,8 +156,7 @@ smd(
     }
   }
 );
- smd ( 
-   {
+ smd({
   cmdname: "lili",
   desc: "Send a video to Luna",
   type: "fun",
@@ -171,14 +170,13 @@ async (m) => {
   try {
     await m.sendMessage(m.from, {
       video: { url: videoUrl },
-      caption:
+      caption: caption,  // Added missing comma
       mimetype: 'video/mp4'
     });
-   } catch (e) {
+  } catch (e) {
     console.error(`${e}\n\nCommand: sendvideo`, e);
-   }
- }
-);
+  }
+});
 smd(
   {
     cmdname: "lili2",
