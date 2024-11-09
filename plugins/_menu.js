@@ -14,28 +14,28 @@ let currentDesignIndex = 0;
 function getNextMenuDesign() {
   const designs = [
     {
-      header: "🔹🔹🔹 ⟪ *{botname}* ⟫ 🔹🔹🔹\n",
-      lineSeparator: "🔹 ",
-      commandPrefix: "> ",
-      footer: "🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹",
-      emoji: "💎",
-      categorySeparator: "🔷🔷🔷🔷🔷🔷\n",
+      header: "✦✦✦ ⟪ *{botname}* ⟫ ✦✦✦\n",
+      lineSeparator: "✦ ",
+      commandPrefix: "➤ ",
+      footer: "✦✦✦✦✦✦✦✦✦✦",
+      emoji: "🌟",
+      categorySeparator: "✦✧✦✧✦✧✦\n",
     },
     {
-      header: "🔺⟪ *{botname}* ⟫🔺\n",
-      lineSeparator: "🔻 ",
-      commandPrefix: "# ",
-      footer: "🔺🔺🔺🔺🔺🔺🔺",
-      emoji: "🔸",
-      categorySeparator: "🔸🔸🔸🔸🔸🔸\n",
+      header: "⬤ ⟪ *{botname}* ⟫ ⬤\n",
+      lineSeparator: "⬤ ",
+      commandPrefix: "» ",
+      footer: "⬤⬤⬤⬤⬤⬤⬤",
+      emoji: "🔘",
+      categorySeparator: "⬤⬛⬤⬛⬤⬛⬤\n",
     },
     {
-      header: "🌟 ⟪ *{botname}* ⟫ 🌟\n",
-      lineSeparator: "✨ ",
-      commandPrefix: "* ",
-      footer: "🌟🌟🌟🌟🌟🌟🌟",
+      header: "✰ ⟪ *{botname}* ⟫ ✰\n",
+      lineSeparator: "✰ ",
+      commandPrefix: "★ ",
+      footer: "✰✰✰✰✰✰✰",
       emoji: "✨",
-      categorySeparator: "✨✨✨✨✨✨\n",
+      categorySeparator: "✰☽✰☽✰☽✰\n",
     }
   ];
 
@@ -72,13 +72,13 @@ astro_patch.smd({
 
     // Display the menu after loading
     const { commands } = require("../lib");
-    const currentTime = new Date();
+    const currentTime = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Lagos' }));
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes().toString().padStart(2, '0');
     const currentDate = currentTime.toLocaleDateString();
     const currentTimeString = `${hours}:${minutes}`;
     const location = "Lagos, Nigeria"; // Replace with actual location
-    const temperature = "30°C"; // Replace with actual temperature
+    const temperature = await getTemperature(); // Fetch dynamic temperature
 
     // Choose the next menu design
     const design = getNextMenuDesign();
@@ -100,7 +100,7 @@ astro_patch.smd({
     const footer = design.footer;
 
     let menuContent = `${header}`;
-    menuContent += `${lineSeparator}🌡️ *Temperature:* ${temperature}\n`;
+    menuContent += `${lineSeparator}🌡️ *Temperature:* ${temperature}°C\n`;
     menuContent += `${lineSeparator}🔰 *Owner:* ${Config.ownername}\n`;
     menuContent += `${lineSeparator}🌍 *Location:* ${location}\n`;
     menuContent += `${lineSeparator}📆 *Date:* ${currentDate}\n`;
@@ -143,3 +143,9 @@ astro_patch.smd({
     await context.error(`Error: ${error.message}`, error);
   }
 });
+
+// Function to fetch current temperature
+async function getTemperature() {
+  // Fetch temperature from an API or other source
+  return "30°C"; // Placeholder value
+}
