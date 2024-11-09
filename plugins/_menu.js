@@ -16,7 +16,7 @@ function getNextMenuDesign() {
     {
       header: "✦✦✦ ⟪ *{botname}* ⟫ ✦✦✦\n",
       lineSeparator: "✦ ",
-      commandPrefix: "➤ ",
+      commandPrefix: "→ ",
       footer: "✦✦✦✦✦✦✦✦✦✦",
       emoji: "🌟",
       categorySeparator: "✦✧✦✧✦✧✦\n",
@@ -24,7 +24,7 @@ function getNextMenuDesign() {
     {
       header: "⬤ ⟪ *{botname}* ⟫ ⬤\n",
       lineSeparator: "⬤ ",
-      commandPrefix: "» ",
+      commandPrefix: "⇒ ",
       footer: "⬤⬤⬤⬤⬤⬤⬤",
       emoji: "🔘",
       categorySeparator: "⬤⬛⬤⬛⬤⬛⬤\n",
@@ -32,7 +32,7 @@ function getNextMenuDesign() {
     {
       header: "✰ ⟪ *{botname}* ⟫ ✰\n",
       lineSeparator: "✰ ",
-      commandPrefix: "★ ",
+      commandPrefix: "✦ ",
       footer: "✰✰✰✰✰✰✰",
       emoji: "✨",
       categorySeparator: "✰☽✰☽✰☽✰\n",
@@ -121,6 +121,9 @@ astro_patch.smd({
     menuContent += `\n${footer}\n\n${design.emoji} *${Config.botname}* - Your companion\n`;
     menuContent += `©2024 *JUPITERBOLD05*\n`;
     menuContent += `${readmore}`;
+
+    // Box the menu content
+    menuContent = `┏━━━━━━━━━━━━━━━━━━━━━━┓\n${menuContent}┗━━━━━━━━━━━━━━━━━━━━━━┛`;
 
     // Send the menu with a "forwarded" tag
     const menuOptions = {
