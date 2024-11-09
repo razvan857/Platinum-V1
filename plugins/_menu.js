@@ -14,31 +14,28 @@ let currentDesignIndex = 0;
 function getNextMenuDesign() {
   const designs = [
     {
-      header: "✦✧━━━⟪ *{botname}* ⟫━━━✧✦\n",
-      lineSeparator: "◆ ",
-      commandPrefix: " ",
-      footer: "✦✧━━━━━━━━━━━━━✧✦",
-      emoji: "🔥",
-      greetingText: "Step into the realm of unlimited power!",
-      categorySeparator: "✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦\n",
+      header: "🔹🔹🔹 ⟪ *{botname}* ⟫ 🔹🔹🔹\n",
+      lineSeparator: "🔹 ",
+      commandPrefix: "> ",
+      footer: "🔹🔹🔹🔹🔹🔹🔹🔹🔹🔹",
+      emoji: "💎",
+      categorySeparator: "🔷🔷🔷🔷🔷🔷\n",
     },
     {
-      header: "❖❖━━━━━⟪ *{botname}* ⟫━━━━━❖❖\n",
-      lineSeparator: "✦ ",
-      commandPrefix: " ",
-      footer: "❖❖━━━━━━━━━━━━❖❖",
+      header: "🔺⟪ *{botname}* ⟫🔺\n",
+      lineSeparator: "🔻 ",
+      commandPrefix: "# ",
+      footer: "🔺🔺🔺🔺🔺🔺🔺",
+      emoji: "🔸",
+      categorySeparator: "🔸🔸🔸🔸🔸🔸\n",
+    },
+    {
+      header: "🌟 ⟪ *{botname}* ⟫ 🌟\n",
+      lineSeparator: "✨ ",
+      commandPrefix: "* ",
+      footer: "🌟🌟🌟🌟🌟🌟🌟",
       emoji: "✨",
-      greetingText: "Welcome to your cosmic command hub!",
-      categorySeparator: "❖❖❖❖❖❖❖❖❖❖❖❖❖❖\n",
-    },
-    {
-      header: "⚔️ ━━━⟪ *{botname}* ⟫━━━ ⚔️\n",
-      lineSeparator: "• ",
-      commandPrefix: " ",
-      footer: "⚔️━━━━━━━━━━━━━⚔️",
-      emoji: "⚡",
-      greetingText: "Harness the strength of legends!",
-      categorySeparator: "•°•°•°•°•°•°•°•°•°•°•°\n",
+      categorySeparator: "✨✨✨✨✨✨\n",
     }
   ];
 
@@ -56,18 +53,18 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// Command handler with subtle anime theme
+// Command handler with unique theme
 astro_patch.smd({
   'cmdname': "menu",
-  'desc': "Displays a calm, readable command list",
-  'react': '💮',
+  'desc': "Displays a stylish, readable command list",
+  'react': '🎨',
   'type': 'user',
   'filename': __filename
 }, async (context, message) => {
   try {
     // Display loading messages
     const loadingMessages = [
-      "The one above all is king y'all bow your heads 🙇"];
+      "🔄 Gathering your commands, please wait..."];
     for (const msg of loadingMessages) {
       await context.sendMessage(context.chat, { text: msg });
       await sleep(1000); // Wait for 1 second between messages
@@ -80,24 +77,8 @@ astro_patch.smd({
     const minutes = currentTime.getMinutes().toString().padStart(2, '0');
     const currentDate = currentTime.toLocaleDateString();
     const currentTimeString = `${hours}:${minutes}`;
-    let greeting = "";
-
-    // Anime-style greetings based on time of day
-    if (hours >= 5 && hours < 9) {
-      greeting = "🌸 *Good Morning* 🌸 - Time for a fresh start!";
-    } else if (hours >= 9 && hours < 12) {
-      greeting = "🌞 *It's still morning* 🌞 - You should get to work!";
-    } else if (hours >= 12 && hours < 15) {
-      greeting = "🌞 *Good Afternoon* 🌞 - Keep up the great work that's if you have any 😂!";
-    } else if (hours >= 15 && hours < 18) {
-      greeting = "🌆 *Good Evening* 🌆 - Unwind and relax!";
-    } else if (hours >= 18 && hours < 21) {
-      greeting = "🌝 *Still night* 🌝 - Reflect on your day!";
-    } else if (hours >= 21 && hours < 23) {
-      greeting = "⭐ *Still night obviously* ⭐ - Get ready to drop your phone!";
-    } else {
-      greeting = "🌙 *Good Night* 🌙 - Try dey sleep you no be winch!";
-    }
+    const location = "Lagos, Nigeria"; // Replace with actual location
+    const temperature = "30°C"; // Replace with actual temperature
 
     // Choose the next menu design
     const design = getNextMenuDesign();
@@ -119,12 +100,13 @@ astro_patch.smd({
     const footer = design.footer;
 
     let menuContent = `${header}`;
-    menuContent += `${lineSeparator}${greeting}\n`;
-    menuContent += `${lineSeparator}🦁 *Owner:* ${Config.ownername}\n`;
+    menuContent += `${lineSeparator}🌡️ *Temperature:* ${temperature}\n`;
+    menuContent += `${lineSeparator}🔰 *Owner:* ${Config.ownername}\n`;
+    menuContent += `${lineSeparator}🌍 *Location:* ${location}\n`;
     menuContent += `${lineSeparator}📆 *Date:* ${currentDate}\n`;
     menuContent += `${lineSeparator}🕰️ *Time:* ${currentTimeString}\n`;
     menuContent += `${lineSeparator}⏲️ *Uptime:* ${runtime(process.uptime())}\n`;
-    menuContent += `${lineSeparator}💽 *RAM Usage:* ${formatp(os.totalmem() - os.freemem())}\n`;
+    menuContent += `${lineSeparator}💾 *RAM Usage:* ${formatp(os.totalmem() - os.freemem())}\n`;
     menuContent += `${lineSeparator}📊 *Total Commands:* ${commands.length}\n\n`;
 
     // List commands by category with decorative separators
@@ -136,7 +118,7 @@ astro_patch.smd({
       });
     }
 
-    menuContent += `\n${footer}\n\n${design.emoji} *${Config.botname}* - Your assistant\n`;
+    menuContent += `\n${footer}\n\n${design.emoji} *${Config.botname}* - Your companion\n`;
     menuContent += `©2024 *JUPITERBOLD05*\n`;
     menuContent += `${readmore}`;
 
