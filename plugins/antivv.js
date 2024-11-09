@@ -1,5 +1,5 @@
 const { smd, bot_ } = require("../lib");
-let bgmm = false;
+let botSettings = false;
 
 // Command to enable or disable the AntiViewOnce feature
 smd(
@@ -12,58 +12,58 @@ smd(
     use: "<on/off>",
     filename: __filename,
   },
-  async (_0x5c3dd1, _0x543e4e) => {
+  async (context, message) => {
     try {
       // Retrieve or create the bot settings for the user
-      bgmm =
+      botSettings =
         (await bot_.findOne({
-          id: "bot_" + _0x5c3dd1.user,
+          id: "bot_" + context.user,
         })) ||
         (await bot_.new({
-          id: "bot_" + _0x5c3dd1.user,
+          id: "bot_" + context.user,
         }));
 
-      let _0x446f76 = _0x543e4e.toLowerCase().split(" ")[0].trim();
+      let command = message.toLowerCase().split(" ")[0].trim();
 
-      if (_0x446f76 === "on" || _0x446f76 === "enable" || _0x446f76 === "act") {
-        if (bgmm.antiviewonce === "true") {
-          return await _0x5c3dd1.reply("*AntiViewOnce already enabled!*");
+      if (command === "on" || command === "enable" || command === "act") {
+        if (botSettings.antiviewonce === "true") {
+          return await context.reply("*AntiViewOnce already enabled!*");
         }
         await bot_.updateOne(
           {
-            id: "bot_" + _0x5c3dd1.user,
+            id: "bot_" + context.user,
           },
           {
             antiviewonce: "true",
           }
         );
-        return await _0x5c3dd1.reply("*AntiViewOnce successfully enabled*");
+        return await context.reply("*AntiViewOnce successfully enabled*");
       } else if (
-        _0x446f76 === "off" ||
-        _0x446f76 === "disable" ||
-        _0x446f76 === "deact"
+        command === "off" ||
+        command === "disable" ||
+        command === "deact"
       ) {
-        if (bgmm.antiviewonce === "false") {
-          return await _0x5c3dd1.reply("*AntiViewOnce already disabled*");
+        if (botSettings.antiviewonce === "false") {
+          return await context.reply("*AntiViewOnce already disabled*");
         }
         await bot_.updateOne(
           {
-            id: "bot_" + _0x5c3dd1.user,
+            id: "bot_" + context.user,
           },
           {
             antiviewonce: "false",
           }
         );
-        return await _0x5c3dd1.reply("*AntiViewOnce successfully deactivated*");
+        return await context.reply("*AntiViewOnce successfully deactivated*");
       } else {
-        return await _0x5c3dd1.send(
+        return await context.send(
           "*_Use on/off to enable/disable AntiViewOnce!_*"
         );
       }
-    } catch (_0x4bb48d) {
-      await _0x5c3dd1.error(
-        _0x4bb48d + "\n\nCommand: AntiViewOnce",
-        _0x4bb48d
+    } catch (error) {
+      await context.error(
+        error + "\n\nCommand: AntiViewOnce",
+        error
       );
     }
   }
@@ -74,42 +74,57 @@ smd(
   {
     on: "viewonce",
   },
-  async (_0x4a4a25, _0x1400fa) => {
+  async (context, message) => {
     try {
       // Retrieve bot settings for the user
-      if (!bgmm) {
-        bgmm = await bot_.findOne({
-          id: "bot_" + _0x4a4a25.user,
+      if (!botSettings) {
+        botSettings = await bot_.findOne({
+          id: "bot_" + context.user,
         });
       }
       // Check if AntiViewOnce is enabled
-      if (bgmm && bgmm.antiviewonce === "true") {
+      if (botSettings && botSettings.antiviewonce === "true") {
         // Download the ViewOnce media
-        let _0x58b72c = await _0x4a4a25.bot.downloadAndSaveMediaMessage(
-          _0x4a4a25.msg
+        let mediaPath = await context.bot.downloadAndSaveMediaMessage(
+          context.msg
         );
+
+        // Determine the chat name
+        let chatName;
+        if (context.isGroup) {
+          // Fetch group details for group name
+          let groupMetadata = await context.bot.groupMetadata(context.chatId);
+          chatName = groupMetadata.subject;
+        } else {
+          chatName = context.pushName; // Use the sender's username for personal DM
+        }
 
         // Constructing the notification message
         let notificationMessage = `*[VIEWONCE MESSAGE RETRIEVED]*\n\n` +
-          `*SENDER:* @${_0x4a4a25.participant || 'Unknown'}\n` + 
+          `*SENDER:* ${context.pushName}\n` + 
           `*TIME:* ${new Date().toLocaleTimeString()}\n` + 
-          `*CHAT:* ${_0x4a4a25.chatId || 'Unknown Chat'}\n` + 
-          `*MESSAGE:* ${_0x4a4a25.body || 'No message content'}\n`; 
+          `*CHAT:* ${chatName}\n` + 
+          `*MESSAGE:* ${context.body || 'No message content'}\n`; 
 
         // Send the downloaded media to the user's DM with the notification message
-        await _0x4a4a25.bot.sendMessage(
-          _0x4a4a25.user,  // Sending to user's DM
+        await context.bot.sendMessage(
+          context.user,  // Sending to user's DM
           {
-            [_0x4a4a25.mtype2.split("Message")[0]]: {
-              url: _0x58b72c,
+            [context.mtype2.split("Message")[0]]: {
+              url: mediaPath,
             },
             caption: notificationMessage,
           }
         );
       }
-    } catch (_0x6010c1) {
-      console.log("Error while getting AntiViewOnce media: ", _0x6010c1);
+    } catch (error) {
+      console.log("Error while getting AntiViewOnce media: ", error);
     }
   }
 );
-        
+
+// Function to fetch current temperature
+async function getTemperature() {
+  // Fetch temperature from an API or other source
+  return "30°C"; // Placeholder value
+            }
