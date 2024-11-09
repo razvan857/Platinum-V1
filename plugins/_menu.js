@@ -16,7 +16,7 @@ function getNextMenuDesign() {
     {
       header: "✦✦✦ ⟪ *{botname}* ⟫ ✦✦✦\n",
       lineSeparator: "✦ ",
-      commandPrefix: "→ ",
+      commandPrefix: "➔ ",
       footer: "✦✦✦✦✦✦✦✦✦✦",
       emoji: "🌟",
       categorySeparator: "✦✧✦✧✦✧✦\n",
@@ -151,4 +151,5 @@ astro_patch.smd({
 async function getTemperature() {
   // Fetch temperature from an API or other source
   return "30°C"; // Placeholder value
-}
+    }
+  
