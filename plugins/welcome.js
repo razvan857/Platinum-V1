@@ -1,25 +1,22 @@
-import config from '../../config.js';
+const config = require('../../config.js');
 
 const gcEvent = async (m, Matrix) => {
   const prefix = config.PREFIX;
   const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
   const text = m.body.slice(prefix.length + cmd.length).trim();
 
-  // Check for valid group command
-  if (cmd === 'welcome1') {
+  if (cmd === 'welcome') {
     if (!m.isGroup) {
       return m.reply("*📛 THIS COMMAND CAN ONLY BE USED IN GROUPS*");
     }
 
     try {
-      // Get group metadata and participants
       const groupMetadata = await Matrix.groupMetadata(m.from);
       const participants = groupMetadata.participants;
       const botNumber = await Matrix.decodeJid(Matrix.user.id);
       const botAdmin = participants.find(p => p.id === botNumber)?.admin;
       const senderAdmin = participants.find(p => p.id === m.sender)?.admin;
 
-      // Ensure bot and user are admins
       if (!botAdmin) {
         return m.reply("*📛 BOT MUST BE AN ADMIN TO USE THIS COMMAND*");
       }
@@ -29,7 +26,6 @@ const gcEvent = async (m, Matrix) => {
 
       let responseMessage;
       
-      // Enable or disable welcome message
       if (text === 'on') {
         config.WELCOME = true;
         responseMessage = "WELCOME & LEFT message has been enabled.";
@@ -40,7 +36,6 @@ const gcEvent = async (m, Matrix) => {
         responseMessage = "Usage:\n- `WELCOME on`: Enable WELCOME & LEFT message\n- `WELCOME off`: Disable WELCOME & LEFT message";
       }
 
-      // Send response to user
       await Matrix.sendMessage(m.from, { text: responseMessage }, { quoted: m });
 
     } catch (error) {
@@ -50,4 +45,4 @@ const gcEvent = async (m, Matrix) => {
   }
 };
 
-export default gcEvent;
+module.exports = gcEvent;
