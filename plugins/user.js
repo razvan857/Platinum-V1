@@ -127,6 +127,53 @@ smd({
   }
 });
 smd({
+  pattern: "groupNotify",
+  desc: "Handles customizable welcome and goodbye messages in the group",
+  category: "group",
+  filename: __filename
+}, async (m) => {
+  try {
+    // Listen for the 'group-participants-update' event
+    m.bot.ev.on('group-participants.update', async (update) => {
+      const { id, participants, action } = update;
+
+      // Example placeholders for customizable messages; replace these with actual data fetch if needed
+      const defaultWelcome = "👋 Welcome to the group, {{user}}! We're glad to have you here.";
+      const defaultGoodbye = "😢 Goodbye, {{user}}! We hope to see you again.";
+
+      // Fetch customizable messages (replace this with actual config fetching logic)
+      const getCustomMessage = (type) => {
+        // Simulate fetching from a database or config file
+        return type === 'welcome' ? defaultWelcome : defaultGoodbye;
+      };
+
+      for (let participant of participants) {
+        // Get the participant's username
+        let user = `@${participant.split('@')[0]}`;
+
+        if (action === 'add') {
+          // Get the customizable welcome message and replace the placeholder
+          const welcomeMessage = getCustomMessage('welcome').replace('{{user}}', user);
+          await m.bot.sendMessage(id, {
+            text: welcomeMessage,
+            mentions: [participant]
+          });
+        } else if (action === 'remove') {
+          // Get the customizable goodbye message and replace the placeholder
+          const goodbyeMessage = getCustomMessage('goodbye').replace('{{user}}', user);
+          await m.bot.sendMessage(id, {
+            text: goodbyeMessage,
+            mentions: [participant]
+          });
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Error in handling group participant updates:", error);
+    await m.error(error + "\n\ncommand: groupNotify", error);
+  }
+});
+smd({
   pattern: "getpp2",
   desc: "Get Profile Pic For Given User",
   category: "user",
