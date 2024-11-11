@@ -1,6 +1,6 @@
 const { smd } = require("../lib");
 
-// Array of questions
+// Array of 205 questions
 const questions = [
   "1. Which phone are u using?",
   "2. Do you have a crush?",
@@ -173,60 +173,48 @@ const questions = [
   "169. What's the most attractive quality in a person for you?",
   "170. If you could be invisible for a day, what would you do?",
   "171. Have you ever had a crush on a friend's partner?",
-  "172. If I dared you to kiss me, would you?",
-  "173. What's the longest you've gone without showering?",
-  "174. What's the strangest thing you've found attractive in someone?",
-  "175. Have you ever had a crush on a teacher?",
-  "176. What's the craziest thing you'd do for love?",
-  "177. What's the most embarrassing thing that's happened to you during a romantic moment?",
-  "178. If you could describe your love life in a song, what song would it be?",
-  "179. What's the best compliment you've ever received?",
-  "180. What's your biggest turn-off?",
-  "181. Would you ever go skinny dipping?",
-  "182. What's the most you've ever lied to get someone's attention?",
-  "183. What's your guilty pleasure TV show or movie?",
-  "184. Have you ever been caught doing something you shouldn't have?",
-  "185. What's the strangest thing you've googled late at night?",
-  "186. If you could only keep one secret forever, what would it be?",
-  "187. Would you rather never find true love or never be intimate again?",
-  "188. What's the most mischievous thing you've done at work or school?",
-  "189. What's the most adventurous thing you've done on a date?",
-  "190. Have you ever broken someone's heart?",
-  "191. What would you do if your ex wanted to get back together?",
-  "192. What's the most ridiculous thing you've ever done to impress someone?",
-  "193. What would you do if you woke up next to your crush?",
-  "194. If you could relive one romantic moment, which would it be?",
-  "195. What's the most trouble you've gotten into at a party?",
-  "196. What's your go-to move when flirting?",
-  "197. If you had to choose between true love or $1 million, which would you pick?",
-  "198. What's the sexiest outfit you own?",
-  "199. Have you ever had a forbidden romance?",
-  "200. If we played truth or dare, what would be your go-to dare?",
-  "201. If you could choose between having sex 3 times a week for the rest of your life or don't have at all what would you pick?",
-  "202. One mistake you made and regretted but if you had the chance to do it, you'd do it again?",
-  "203. Who am I to you?",
-  "204. Ever had a pregnancy scare?",
-  "205. Craziest sexual thing you've done with the OPPOSITE gender? No lies please."
+  "172. What’s the most embarrassing thing that has ever happened to you?",
+  "173. How would you describe your perfect date?",
+  "174. What's one thing you want to try in the bedroom but haven't?",
+  "175. Do you believe in love at first sight?",
+  "176. What’s the weirdest compliment you’ve ever received?",
+  "177. What would you do if I kissed you right now?",
+  "178. What’s your biggest turn-on?",
+  "179. What’s your favorite type of music to set the mood?",
+  "180. If you could only wear one outfit for the rest of your life, what would it be?",
+  "181. Have you ever gotten caught in a compromising position?",
+  "182. Have you ever been in love with someone who didn’t feel the same way?",
+  "183. Would you rather have a night of passion or a deep, meaningful conversation?",
+  "184. What’s the longest time you’ve gone without intimacy?",
+  "185. Do you have any hidden talents?",
+  "186. Would you kiss me in public?",
+  "187. Have you ever kissed someone of the same gender?",
+  "188. What’s something you’ve never told anyone about your romantic life?",
+  "189. What’s your favorite thing about being in a relationship?",
+  "190. What would you do if someone tried to steal your partner from you?",
+  "191. What’s the most attractive physical feature you look for in a partner?",
+  "192. Have you ever had a one-night stand?",
+  "193. What’s the best way to make you feel special?",
+  "194. If I told you I loved you, how would you respond?",
+  "195. If we were stranded together, what would you want us to do?",
+  "196. What would you say if I asked you to be mine?",
+  "197. What’s your idea of a perfect relationship?",
+  "198. What do you think makes someone irresistible?",
+  "199. What would be your reaction if I gave you a passionate kiss right now?",
+  "200. If we went on a vacation together, where would we go?",
+  "201. What do you think is the key to a successful relationship?",
+  "202. Would you rather have someone who is always honest or someone who is always kind?",
+  "203. What’s something you’ve always wanted to do but haven’t done yet?",
+  "204. Have you ever been in a situation where you regret not saying something?",
+  "205. What’s your greatest fear when it comes to relationships?"
 ];
 
-// Command implementation
-smd(
-  {
-    cmdname: "questiongame",
-    desc: "Sends a random question from a list of fun and spicy questions.",
-    react: "🔥",
-    type: "game",
-    filename: __filename,
-  },
-  async (m) => {
-    try {
-      // Select a random question
-      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-      
-      // Send the question as a reply
-      await m.reply(randomQuestion);
-    } catch (e) {
-      m.error(`${e}\n\nCommand: questiongame`, e, false);
-    }
+// Command handler for triggering the random question
+smd.addCommand({
+  pattern: 'randomquestion',
+  command: async (msg, { text, prefix }) => {
+    // Send a random question from the list
+    const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+    await msg.reply(randomQuestion);
   }
-);
+});
