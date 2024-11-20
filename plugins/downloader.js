@@ -557,7 +557,7 @@ smd(
 
       if (!repoUrl) {
         return await _0x1ae8f8.reply(
-          "*Provide Repo URL, e.g., .git https://github.com//Platinum-V1_*"
+          "*Provide Repo URL, e.g., .git https:/Jupiterbold05/github.com//Platinum-V1_*"
         );
       }
 
