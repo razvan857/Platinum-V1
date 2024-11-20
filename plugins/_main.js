@@ -222,33 +222,34 @@ async function getDateTime() {
 }
 const scan = "https://platinum-v1-pair.onrender.com/";
 
-smd({
+smd(
+  {
   pattern: "repo",
   react: "🗃️",
   alias: ["git", "sc", "script"],
   desc: "Sends info about repo",
   category: "general",
   filename: __filename
-}, async _0x45da98 => {
+}, async messageInstance => {
   try {
     // GitHub API request to get repository info
-    let { data: _0x44f98c } = await axios.get("https://api.github.com/repos//Jupiterbold05/Platinum-V1");
+    let { data: repoData } = await axios.get("https://api.github.com/repos/Jupiterbold05/Platinum-V1");
     
-    let _0x1c73f9 = (`
+    let responseMessage = (`
 PLATINUM-V1 ᴀ sɪᴍᴘʟᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ, ᴍᴀᴅᴇ ʙʏ JUPITERBOLD05 ᴀɴᴅ ᴅᴇᴘʟᴏʏᴇᴅ ʙʏ *JUPITERBOLD05*.
 
-  *❲❒❳ Stars:* ${_0x44f98c.stargazers_count} stars
-  *❲❒❳ Forks:* ${_0x44f98c.forks_count} forks
+  *❲❒❳ Stars:* ${repoData.stargazers_count} stars
+  *❲❒❳ Forks:* ${repoData.forks_count} forks
   *❲❒❳ Authors:* Jupiterbold05
-  *❲❒❳ Created On:* ${new Date(_0x44f98c.created_at).toLocaleDateString()}
-  *❲❒❳ Repo:* _https://github.com//Jupiterbold05/Platinum-V1_
+  *❲❒❳ Created On:* ${new Date(repoData.created_at).toLocaleDateString()}
+  *❲❒❳ Repo:* _https://github.com/Jupiterbold05/Platinum-V1_
   *❲❒❳ Scan:* _${scan}_ ${Config.caption ? `\n\n${Config.caption}` : ""}
     `).trim();
 
-    return await _0x45da98.sendUi(_0x45da98.jid, { caption: _0x1c73f9 });
+    return await messageInstance.sendUi(messageInstance.jid, { caption: responseMessage });
     
   } catch (error) {
-    await _0x45da98.error("Error fetching repo data: " + error.message + "\n\ncommand: repo", error);
+    await messageInstance.error("Error fetching repo data: " + error.message + "\n\ncommand: repo", error);
   }
 });
 smd(
