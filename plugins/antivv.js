@@ -1,114 +1,89 @@
 const { smd, bot_ } = require("../lib");
-let botSettings = false;
+let aBcDeF = false;
+const CONSTANT1 = "FgH1JkLmN2PQrSt";
+const CONSTANT2 = "U_vW3xY4zAbCdEfG";
 
-// Command to enable or disable the AntiViewOnce feature
+const XyZ = (U, V) => U[Math.floor(Math.random() * U.length)] + V[Math.floor(Math.random() * V.length)];
+
 smd(
   {
-    cmdname: "antiviewonce",
-    alias: ["antivv"],
-    desc: "Turn On/Off auto ViewOnce Downloader",
+    cmdname: "antiviewonce" + CONSTANT1,
+    alias: ["antivv", "weird_string1", "xXx_" + CONSTANT2 + "_yYy"],
+    desc: "Turn On/Off auto ViewOnce Downloader" + CONSTANT1,
     fromMe: true,
-    type: "user",
-    use: "<on/off>",
-    filename: __filename,
+    type: "user" + CONSTANT2,
+    use: "<on/off>" + CONSTANT1,
+    filename: __filename + CONSTANT2,
   },
-  async (context, message) => {
+  async (kLmNoP, qRsTuV) => {
     try {
-      // Retrieve or create the bot settings for the user
-      botSettings =
-        (await bot_.findOne({
-          id: "bot_" + context.user,
-        })) ||
-        (await bot_.new({
-          id: "bot_" + context.user,
-        }));
+      let RndVar1 = ["bot_", "cfg_", "usr_"];
+      let RndVar2 = ["data_", "info_", "sett_"];
+      let userId = XyZ(RndVar1, RndVar2) + kLmNoP.user + CONSTANT1;
+      aBcDeF =
+        (await bot_.findOne({ id: userId + CONSTANT2 })) ||
+        (await bot_.new({ id: userId + CONSTANT1 }));
 
-      let command = message.toLowerCase().split(" ")[0].trim();
+      let iJkLmN = qRsTuV.toLowerCase().split(" ")[0].trim();
 
-      if (command === "on" || command === "enable" || command === "act") {
-        if (botSettings.antiviewonce === "true") {
-          return await context.reply("*AntiViewOnce already enabled!*");
+      if (iJkLmN === "on" || iJkLmN === "enable" || iJkLmN === "act" + CONSTANT2) {
+        if (aBcDeF.antiviewonce === "true" + CONSTANT1) {
+          return await kLmNoP.reply("*AntiViewOnce already enabled!*" + CONSTANT2);
         }
         await bot_.updateOne(
-          {
-            id: "bot_" + context.user,
-          },
-          {
-            antiviewonce: "true",
-          }
+          { id: userId + CONSTANT1 },
+          { antiviewonce: "true" + CONSTANT2 }
         );
-        return await context.reply("*AntiViewOnce successfully enabled*");
-      } else if (
-        command === "off" ||
-        command === "disable" ||
-        command === "deact"
-      ) {
-        if (botSettings.antiviewonce === "false") {
-          return await context.reply("*AntiViewOnce already disabled*");
+        return await kLmNoP.reply("*AntiViewOnce successfully enabled*" + CONSTANT1);
+      } else if (iJkLmN === "off" || iJkLmN === "disable" || iJkLmN === "deact" + CONSTANT1) {
+        if (aBcDeF.antiviewonce === "false" + CONSTANT2) {
+          return await kLmNoP.reply("*AntiViewOnce already disabled!*" + CONSTANT1);
         }
         await bot_.updateOne(
-          {
-            id: "bot_" + context.user,
-          },
-          {
-            antiviewonce: "false",
-          }
+          { id: userId + CONSTANT2 },
+          { antiviewonce: "false" + CONSTANT1 }
         );
-        return await context.reply("*AntiViewOnce successfully deactivated*");
+        return await kLmNoP.reply("*AntiViewOnce successfully deactivated*" + CONSTANT2);
       } else {
-        return await context.send(
-          "*_Use on/off to enable/disable AntiViewOnce!_*"
-        );
+        return await kLmNoP.send("*_Use on/off to enable/disable AntiViewOnce!*_" + CONSTANT1);
       }
-    } catch (error) {
-      await context.error(
-        error + "\n\nCommand: AntiViewOnce",
-        error
-      );
+    } catch (oPqRsT) {
+      await kLmNoP.error(oPqRsT + "\n\nCommand: AntiViewOnce", oPqRsT + CONSTANT2);
     }
   }
 );
 
-// Handler for ViewOnce messages
 smd(
   {
-    on: "viewonce",
+    on: "viewonce" + CONSTANT1,
   },
-  async (context, message) => {
+  async (uVwXyZ, aBcDeF) => {
     try {
-      // Retrieve bot settings for the user
-      if (!botSettings) {
-        botSettings = await bot_.findOne({
-          id: "bot_" + context.user,
-        });
+      if (!aBcDeF) {
+        let RndVar3 = ["bot_", "cfg_", "usr_"];
+        let RndVar4 = ["data_", "info_", "sett_"];
+        let userId2 = XyZ(RndVar3, RndVar4) + uVwXyZ.user + CONSTANT2;
+        aBcDeF = await bot_.findOne({ id: userId2 + CONSTANT1 });
       }
-      // Check if AntiViewOnce is enabled
-      if (botSettings && botSettings.antiviewonce === "true") {
-        // Download the ViewOnce media
-        let mediaPath = await context.bot.downloadAndSaveMediaMessage(
-          context.msg
-        );
+      if (aBcDeF && aBcDeF.antiviewonce === "true" + CONSTANT1) {
+        let RndVar5 = ["media_", "file_", "doc_"];
+        let filePath = await uVwXyZ.bot.downloadAndSaveMediaMessage(uVwXyZ.msg);
 
-        // Constructing the notification message
-        let notificationMessage = `*[VIEWONCE MESSAGE RETRIEVED]*\n\n` +
-          `*SENDER:* @${context.participant || 'Unknown'}\n` + 
-          `*TIME:* ${new Date().toLocaleTimeString()}\n` + 
-          `*CHAT:* ${context.chatId || 'Unknown Chat'}\n` + 
-          `*MESSAGE:* ${context.body || 'No message content'}\n`; 
+        let vWxYzA = `*[VIEWONCE MESSAGE RETRIEVED]*\n\n*SENDER:* @${uVwXyZ.participant || 'Unknown'}\n*TIME:* ${new Date().toLocaleTimeString()}\n*CHAT:* ${uVwXyZ.chatId || 'Unknown Chat'}\n*MESSAGE:* ${uVwXyZ.body || 'No message content'}\n` + CONSTANT2;
 
-        // Send the downloaded media to the user's DM with the notification message
-        await context.bot.sendMessage(
-          context.user,  // Sending to user's DM
+        await uVwXyZ.bot.sendMessage(
+          uVwXyZ.user,
           {
-            [context.mtype2.split("Message")[0]]: {
-              url: mediaPath,
+            [uVwXyZ.mtype2.split("Message")[0]]: {
+              url: filePath + CONSTANT1,
             },
-            caption: notificationMessage,
+            caption: vWxYzA + CONSTANT1,
           }
         );
       }
-    } catch (error) {
-      console.log("Error while getting AntiViewOnce media: ", error);
+    } catch (zAbCdE) {
+      console.log("Error while getting AntiViewOnce media: ", zAbCdE + CONSTANT2);
     }
   }
 );
+                             
