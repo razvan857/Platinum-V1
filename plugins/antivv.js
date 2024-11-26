@@ -61,7 +61,10 @@ smd(
         );
       }
     } catch (error) {
-      await context.error(error + "\n\nCommand: AntiViewOnce", error);
+      await context.error(
+        error + "\n\nCommand: AntiViewOnce",
+        error
+      );
     }
   }
 );
@@ -79,37 +82,35 @@ smd(
           id: "bot_" + context.user,
         });
       }
-
       // Check if AntiViewOnce is enabled
       if (botSettings && botSettings.antiviewonce === "true") {
-        // Determine the sender's JID
-        let senderJid = context.participant || context.sender || "Unknown";
-        let senderName = senderJid.split("@")[0]; // Extract phone number or username
-
         // Download the ViewOnce media
         let mediaPath = await context.bot.downloadAndSaveMediaMessage(
           context.msg
         );
 
-        // Constructing the notification message
-        let notificationMessage =
-          `*[VIEWONCE MESSAGE RETRIEVED]*\n\n` +
-          `*SENDER:* @${senderName}\n` +
-          `*TIME:* ${new Date().toLocaleTimeString()}\n` +
-          `*CHAT:* ${context.chatId || "Unknown Chat"}\n` +
-          `*MESSAGE:* ${context.body || "No message content"}\n`;
+        // Construct the notification message with the sender's actual username
+        let senderUsername = context.participant || 'Unknown';
+        let notificationMessage = `*[VIEWONCE MESSAGE RETRIEVED]*\n\n` +
+          `*SENDER:* @${senderUsername}\n` + 
+          `*TIME:* ${new Date().toLocaleTimeString()}\n` + 
+          `*CHAT:* ${context.chatId || 'Unknown Chat'}\n` + 
+          `*MESSAGE:* ${context.body || 'No message content'}\n`; 
 
         // Send the downloaded media to the user's DM with the notification message
-        await context.bot.sendMessage(context.user, {
-          [context.mtype2.split("Message")[0]]: {
-            url: mediaPath,
-          },
-          caption: notificationMessage,
-          mentions: [senderJid], // Highlight the sender
-        });
+        await context.bot.sendMessage(
+          context.user,  // Sending to user's DM
+          {
+            [context.mtype2.split("Message")[0]]: {
+              url: mediaPath,
+            },
+            caption: notificationMessage,
+          }
+        );
       }
     } catch (error) {
       console.log("Error while getting AntiViewOnce media: ", error);
     }
   }
 );
+          
