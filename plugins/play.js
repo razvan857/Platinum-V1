@@ -18,8 +18,6 @@ const axios = require("axios");
 const fetch = require("node-fetch");
 const path = require("path");
 const gifted = require('gifted-dls');
-const sampleUrl = 'https://youtu.be/wJnBTPUQS5A?si=klI0qxyOnnbcriOk'; 
-let data = await gifted.giftedyta(sampleUrl)
 console.log(data)
 var videotime = 2000;
 const { cmd } = require("../lib/plugins");
