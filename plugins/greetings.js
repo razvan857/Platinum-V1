@@ -3,9 +3,9 @@ import Greetings, { isEnabled, setWelcomeMessage, setGoodByeMessage, getWelcomeM
 
 bot(
    {
-      pattern: 'welcome',
+      pattern: 'intro',
       isPublic: true,
-      desc: 'Setup Welcome Messages for new Group Members',
+      desc: 'Setup Intro Messages for new Group Members',
       type: 'group',
    },
    async (message, match, m) => {
@@ -41,9 +41,9 @@ bot(
 
 bot(
    {
-      pattern: 'goodbye',
+      pattern: 'farewell',
       isPublic: true,
-      desc: 'Setup Goodbye Messages for left Group Members',
+      desc: 'Setup Farewell Messages for left Group Members',
       type: 'group',
    },
    async (message, match, m) => {
