@@ -1,5 +1,6 @@
-import { bot } from '../lib/handler.js';
-import Greetings, { isEnabled, setWelcomeMessage, setGoodByeMessage, getWelcomeMessage, getGoodByeMessage } from '../lib/sql/greetings.js';
+const { bot } = require('../lib/handler.js');
+const Greetings = require('../lib/sql/greetings.js');
+const { isEnabled, setWelcomeMessage, setGoodByeMessage, getWelcomeMessage, getGoodByeMessage } = Greetings;
 
 bot(
    {
