@@ -464,7 +464,7 @@ smd(
 // Command to handle answers by number
 smd(
   {
-    cmdname: "answer",
+    cmdname: "a",
     desc: "Answer the current question in the question game.",
     type: "game",
     filename: __filename,
