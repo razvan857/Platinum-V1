@@ -2,7 +2,7 @@ const { smd } = require("../lib");
 
 // Expanded Array of Questions
 const questions = [
-"1. Which phone are u using?",
+    "1. Which phone are u using?",
     "2. Do you have a crush?",
     "3. Do u like sex chatting?",
     "4. How did u feel about me?",
@@ -410,7 +410,7 @@ this.game = this.game ? this.game : {};
 // Command to start or join a game
 smd(
   {
-    cmdname: "queto",
+    cmdname: "qgame",
     desc: "Start or join a question game.",
     react: "🔥",
     type: "game",
@@ -461,10 +461,10 @@ smd(
   }
 );
 
-// Command to handle answers and prevent direct replies
+// Command to handle answers by number
 smd(
   {
-    cmdname: "a",
+    cmdname: "ans",
     desc: "Answer the current question in the question game.",
     type: "game",
     filename: __filename,
@@ -483,27 +483,24 @@ smd(
         return context.reply("_Please provide an answer to the question._");
       }
 
-      // Reset global timer after an answer
-      clearTimeout(runningGame.globalTimer);
-
-      // Switch to the next player's turn
+      // Proceed to the next player's turn
       runningGame.currentTurn = runningGame.currentTurn === runningGame.player1 ? runningGame.player2 : runningGame.player1;
 
-      // Send next question
-      const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-      runningGame.lastQuestion = randomQuestion;
+      // Send the next question
+      const nextQuestion = questions[Math.floor(Math.random() * questions.length)];
+      runningGame.lastQuestion = nextQuestion;
 
-      await context.reply(`@${runningGame.currentTurn.split('@')[0]}, ${randomQuestion}`, { mentions: [runningGame.currentTurn] });
+      await context.reply(`@${runningGame.currentTurn.split('@')[0]}, ${nextQuestion}`, { mentions: [runningGame.currentTurn] });
 
       // Reset global timer
+      clearTimeout(runningGame.globalTimer);
       runningGame.globalTimer = setTimeout(async () => {
-        // End the game if no activity within 7 minutes
         runningGame.state = "ENDED";
         await context.reply("_Game ended due to inactivity. No moves made within 7 minutes._");
       }, 420000); // 7 minutes = 420,000 ms
 
     } catch (e) {
-      context.error(`${e}\n\nCommand: answer`, e, false);
+      context.error(`${e}\n\nMessage Handling Error`, e, false);
     }
   }
 );
@@ -511,7 +508,7 @@ smd(
 // Command to delete a running game
 smd(
   {
-    cmdname: "delquestiongame",
+    cmdname: "delqgame",
     desc: "Deletes a running question game.",
     type: "game",
     filename: __filename,
