@@ -7,7 +7,7 @@ const {
   clearGreetings
 } = require('../lib/');
 
-cmd({
+smd({
   pattern: "welcome ?(.*)",
   desc: "Welcome new members.",
   category: "group",
@@ -50,7 +50,7 @@ cmd({
   }
 });
 
-cmd({
+smd({
   pattern: "goodbye ?(.*)",
   desc: "Goodbye members.",
   category: "group",
