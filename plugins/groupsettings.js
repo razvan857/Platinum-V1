@@ -6,7 +6,6 @@ const {
   userdb,
   bot_,
   smd,
-  Config,
   tlang,
   sleep,
   prefix,
