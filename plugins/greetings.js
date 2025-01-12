@@ -107,4 +107,4 @@ smd({
     await message.error(error + "\n\ncommand: goodbye", error, false);
   }
 });
-      
+                     
