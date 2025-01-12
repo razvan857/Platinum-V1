@@ -9,45 +9,45 @@ const {
 } = require('../lib/');
 
 smd({
-  pattern: "welcome ?(.*)",
-  desc: "Welcome new members.",
+  pattern: "greet", // Changed trigger from "welcome" to "greet"
+  desc: "Greet new members.",
   category: "group",
   filename: __filename
 }, async (message, match) => {
   try {
-    // Retrieve the saved welcome message for the group
-    const welcome = await getMessage(message.jid, 'welcome', message.id);
+    // Retrieve the saved greet message for the group
+    const greet = await getMessage(message.jid, 'greet', message.id);
 
-    // If no argument and no welcome message exists, show an example
-    if (!match && !welcome) {
-      return await message.reply('*Example: welcome Hi &mention*');
+    // If no argument and no greet message exists, show an example
+    if (!match && !greet) {
+      return await message.reply('*Example: greet Hi &mention*');
     }
 
-    // Handle toggling the welcome feature on/off
+    // Handle toggling the greet feature on/off
     if (match === 'on' || match === 'off') {
-      if (!welcome) {
-        return await message.reply('*Example: welcome Hi &mention*');
+      if (!greet) {
+        return await message.reply('*Example: greet Hi &mention*');
       }
-      await enableGreetings(message.jid, 'welcome', match, message.id);
-      return await message.reply(`_Welcome ${match === 'on' ? 'Enabled' : 'Disabled'}_`);
+      await enableGreetings(message.jid, 'greet', match, message.id);
+      return await message.reply(`_Greet ${match === 'on' ? 'Enabled' : 'Disabled'}_`);
     }
 
-    // Handle deleting the welcome message
+    // Handle deleting the greet message
     if (match === 'delete') {
-      await deleteMessage(message.jid, 'welcome', message.id);
-      clearGreetings(message.jid, 'welcome', message.id);
-      return await message.reply('_Welcome deleted_');
+      await deleteMessage(message.jid, 'greet', message.id);
+      clearGreetings(message.jid, 'greet', message.id);
+      return await message.reply('_Greet deleted_');
     }
 
-    // Save the new welcome message
-    await setMessage(message.jid, 'welcome', match, true, message.id);
+    // Save the new greet message
+    await setMessage(message.jid, 'greet', match, true, message.id);
 
     // Generate and preview the saved message
-    const { msg, options, type } = await greetingsPreview(message, 'welcome', message.id);
+    const { msg, options, type } = await greetingsPreview(message, 'greet', message.id);
     await message.bot.sendMessage(message.chat, msg, options, { quoted: message });
-    return await message.reply('_Welcome set_');
+    return await message.reply('_Greet set_');
   } catch (error) {
-    await message.error(error + "\n\ncommand: welcome", error, false);
+    await message.error(error + "\n\ncommand: greet", error, false);
   }
 });
 
