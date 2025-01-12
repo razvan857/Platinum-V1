@@ -9,7 +9,7 @@ const {
 } = require('../lib/');
 
 smd({
-  pattern: "greet", // Changed trigger from "welcome" to "greet"
+  pattern: "greet", // Trigger for the greet command
   desc: "Greet new members.",
   category: "group",
   filename: __filename
@@ -39,12 +39,19 @@ smd({
       return await message.reply('_Greet deleted_');
     }
 
+    // Replace &mention placeholder with actual mention syntax
+    const greetMessage = match.replace(/&mention/gi, `@${message.sender.split("@")[0]}`);
+
     // Save the new greet message
-    await setMessage(message.jid, 'greet', match, true, message.id);
+    await setMessage(message.jid, 'greet', greetMessage, true, message.id);
 
     // Generate and preview the saved message
-    const { msg, options, type } = await greetingsPreview(message, 'greet', message.id);
-    await message.bot.sendMessage(message.chat, msg, options, { quoted: message });
+    const { msg, options } = await greetingsPreview(message, 'greet', message.id);
+
+    // Ensure message content is treated correctly
+    const finalMessage = typeof msg === 'string' ? msg : msg.text || '';
+    await message.bot.sendMessage(message.chat, finalMessage, options, { quoted: message });
+
     return await message.reply('_Greet set_');
   } catch (error) {
     await message.error(error + "\n\ncommand: greet", error, false);
@@ -52,7 +59,7 @@ smd({
 });
 
 smd({
-  pattern: "goodbye ?(.*)",
+  pattern: "goodbye", // Trigger for the goodbye command
   desc: "Goodbye members.",
   category: "group",
   filename: __filename
@@ -82,12 +89,19 @@ smd({
       return await message.reply('_Goodbye deleted_');
     }
 
+    // Replace &mention placeholder with actual mention syntax
+    const goodbyeMessage = match.replace(/&mention/gi, `@${message.sender.split("@")[0]}`);
+
     // Save the new goodbye message
-    await setMessage(message.jid, 'goodbye', match, true, message.id);
+    await setMessage(message.jid, 'goodbye', goodbyeMessage, true, message.id);
 
     // Generate and preview the saved message
-    const { msg, options, type } = await greetingsPreview(message, 'goodbye', message.id);
-    await message.bot.sendMessage(message.chat, msg, options, { quoted: message });
+    const { msg, options } = await greetingsPreview(message, 'goodbye', message.id);
+
+    // Ensure message content is treated correctly
+    const finalMessage = typeof msg === 'string' ? msg : msg.text || '';
+    await message.bot.sendMessage(message.chat, finalMessage, options, { quoted: message });
+
     return await message.reply('_Goodbye set_');
   } catch (error) {
     await message.error(error + "\n\ncommand: goodbye", error, false);
