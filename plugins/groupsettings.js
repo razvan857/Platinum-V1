@@ -1,11 +1,12 @@
 global.warncount = process.env.WARN_COUNT || global.warncount || "3";
 global.MsgsInLog = process.env.MSGS_IN_LOG || global.MsgsInLog || "false";
-const { sendWelcome } = require("../lib/sendWelcome");
 const {
   groupdb,
   userdb,
   bot_,
   smd,
+  sendWelcome,
+  Config,
   tlang,
   sleep,
   prefix,
