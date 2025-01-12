@@ -49,7 +49,7 @@ smd({
     const { msg, options } = await greetingsPreview(message, 'greet', message.id);
 
     // Ensure message content is treated correctly
-    const finalMessage = typeof msg === 'string' ? msg : msg.text || '';
+    const finalMessage = typeof msg === 'string' ? msg : msg.text || 'Default Message';
     await message.bot.sendMessage(message.chat, finalMessage, options, { quoted: message });
 
     return await message.reply('_Greet set_');
@@ -99,7 +99,7 @@ smd({
     const { msg, options } = await greetingsPreview(message, 'goodbye', message.id);
 
     // Ensure message content is treated correctly
-    const finalMessage = typeof msg === 'string' ? msg : msg.text || '';
+    const finalMessage = typeof msg === 'string' ? msg : msg.text || 'Default Message';
     await message.bot.sendMessage(message.chat, finalMessage, options, { quoted: message });
 
     return await message.reply('_Goodbye set_');
@@ -107,4 +107,4 @@ smd({
     await message.error(error + "\n\ncommand: goodbye", error, false);
   }
 });
-                                       
+      
