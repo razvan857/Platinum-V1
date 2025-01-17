@@ -185,7 +185,7 @@ astro_patch.cmd(
 );
 smd(
   {
-    pattern: "hado",
+    pattern: "ping",
     react: "✨",
     desc: "Ping response with speed.",
     category: "misc",
